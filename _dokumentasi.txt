@@ -1,0 +1,14 @@
+@ SYNCFUSION 
+    https://www.syncfusion.com/
+
+    docs : 
+        https://ej2.syncfusion.com/react/documentation/introduction
+    
+    NPM INSTALL SYNCFUSION DI PROJECT : 
+        npm install @syncfusion/ej2-base @syncfusion/ej2-react-buttons @syncfusion/ej2-react-charts @syncfusion/ej2-react-grids @syncfusion/ej2-react-dropdowns @syncfusion/ej2-react-maps @syncfusion/ej2-react-navigations @syncfusion/ej2-react-splitbuttons
+
+    NOTE :
+        Jika ingin menginstall ini didalam project maka anda harus menambahkan pada framework config agar mengabaikan issue : 
+            ssr: {
+                noExternal: [/@syncfusion/]
+            }

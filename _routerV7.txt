@@ -1,0 +1,19 @@
+ @__Membuat Routing web : 
+    # Untuk membuat sebuah routing web didalam react router v7 anda harus Mengikuti langkah berikut : 
+        1.  Buat folder yang akan menjadi page dari halaman tersebut didalam @/app/routes/namaFolder/namaFile.tsx
+        2.  Setelah selesai membangun atau melakukkan desain maka anda wajib deklarasikan atau configurasikan didalam 
+            @/app/route.ts  --> Ini adalah handler yang akan menangani sistem routing kita. Berikut cara deklarasi nya : 
+
+                -   import { type RouteConfig, layout, route } from "@react-router/dev/routes";
+                - 
+                -   export default [
+                -         layout("routes/admin/admin-layout.tsx", [ -------------------> Layout : kita deklarasikan dengan memanggilnya dari package routes kemudian kita panggil lokasi file di param pertama dan children di param kedua berbentuk array.
+                -         route("dashboard", "routes/admin/dashboard.tsx") ------------> route  : Sama cuma disini kita di param pertama adalah path(nama dari query route nanti) kemudian param ke 2 adalah lokasi dari file yang akan dijadikan halaman.
+                -        ])
+                -   ] satisfies RouteConfig;
+
+    INFO ** OUTLET ** PENTING : 
+        Q : Walaupun kita deklarasikan route didalam layout pada file route.ts, children nya masih belum di render yang muncul malah layout 100%
+            A : Solusinya adalah pada file layout nya misal adminLayout.tsx anda panggil sebuah komponent dari react-router bernama <Outlet />
+                E : Outlet itu bekerja seperti children pada nextjs dia akan memanggil sebuah komponent yang ada dialam file route konfigurasi dia
+                    kemudian dia letakkan di posisi komponent <Outlet />.
