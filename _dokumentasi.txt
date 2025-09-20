@@ -1,4 +1,4 @@
-@ SYNCFUSION 
+@__ SYNCFUSION 
     https://www.syncfusion.com/
 
     docs : 
@@ -12,3 +12,9 @@
             ssr: {
                 noExternal: [/@syncfusion/]
             }
+
+###
+@__ COMPONENT SYNCFUSION  :
+    1). <SidebarComponent /> || import { SidebarComponent } from "@syncfusion/ej2-react-navigations";
+            Adalah komponen React dari pustaka Syncfusion yang digunakan untuk membuat sidebar (navigasi samping) di aplikasi. Sidebar ini biasanya dipakai untuk menampilkan menu, navigasi, atau konten tambahan yang bisa ditampilkan/ disembunyikan.
+    2). 
