@@ -1,10 +1,18 @@
 import {Header, StateCard, TripCard} from "components";
 import {user, dashboardStats, allTrips} from "~/constants"
+import {getUser} from "~/appwrite/auth";
+import type { Route } from "./+types/dashboard";
 
 const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole } = dashboardStats;
 
-const Dashboard = () => {
-  return (
+// ini seperti useEFfect : dia akan jijalankan sebelum komponen di render
+export const clientLoader = async () => await getUser();
+
+const Dashboard = ({ loaderData }: Route.ComponentProps ) => {
+
+    const user = loaderData as User | null;
+
+    return (
     <main className="dashboard wrapper">
       <Header
         title={`Welcome ${user?.name ?? "Guest"} 👋 `}
