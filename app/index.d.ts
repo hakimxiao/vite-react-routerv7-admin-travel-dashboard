@@ -14,9 +14,12 @@ declare interface UserData extends BaseUser {
 declare type User = BaseUser;
 
 declare interface Country {
+    text: string;
   name: string;
   coordinates: [number, number];
   value: string;
+  flagPng: string;
+  flagAlt: string;
   openStreetMap?: string;
 }
 
