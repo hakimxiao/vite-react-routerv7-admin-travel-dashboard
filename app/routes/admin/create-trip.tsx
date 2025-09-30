@@ -29,6 +29,7 @@ const CreateTrip = ({loaderData}: Route.ComponentProps) => {
     ))
 
     const handleSubmit = async() => {}
+    const handleChange = async(key: keyof TripFormData, value: string | number) => {}
 
     return (
         <main className="flex flex-col gap-10 pb-20 wrapper">
@@ -46,16 +47,33 @@ const CreateTrip = ({loaderData}: Route.ComponentProps) => {
                             fields={{ text: "text", value: "value" }}
                             placeholder="Select a country"
                             className="combo-box"
+                            change={(e: { value: string | undefined}) => {
+                                if(e.value) {
+                                    handleChange("country", e.value)
+                                }}}
                             itemTemplate={(data: any) =>(
                                 <div className="flex items-center ml-2 gap-1">
                                     <img
-                                        src={data.flagPng} // bisa ganti ke data.flagSvg
+                                        src={data.flagPng}
                                         alt={data.flagAlt}
                                         className="w-6 h-4 object-cover rounded-sm"
                                     />
                                     <span>{data.text}</span>
                                 </div>
                             )}
+
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="duration">Duration</label>
+                        <input
+                            type="number"
+                            id="duration"
+                            name="duration"
+                            placeholder="Enter a number of days (5, 12, ....)"
+                            className="form-input placeholder:text-gray-100"
+                            onChange={(e) => handleChange('duration', Number(e.target.value))}
                         />
                     </div>
                 </form>
