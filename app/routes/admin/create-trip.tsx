@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Header} from "../../../components";
 import {ComboBoxComponent} from "@syncfusion/ej2-react-dropdowns";
 import type {Route} from "./+types/create-trip"
 import {comboBoxItems, selectItems} from "~/constants";
 import {formatKey} from "~/lib/utils";
+import {LayerDirective, LayersDirective, MapsComponent} from "@syncfusion/ej2-react-maps";
+import {world_map} from "~/constants/world_map";
 
 export const loader = async() => {
     const response = await fetch("https://restcountries.com/v3.1/all?fields=name,flags,latlng,maps");
@@ -22,6 +24,17 @@ export const loader = async() => {
 
 const CreateTrip = ({loaderData}: Route.ComponentProps) => {
     const countries = loaderData as Country[];
+    console.log("countries", countries);
+    const [formData, setFormData] = useState<TripFormData>({
+        country: "",
+        travelStyle: "",
+        interest: "",
+        budget: "",
+        duration: 0,
+        groupType: ""
+    });
+    console.log("formData", formData);
+
     const countryData = countries.map((country) => (
         {
             text: country.text,
@@ -30,8 +43,16 @@ const CreateTrip = ({loaderData}: Route.ComponentProps) => {
         }
     ))
 
+    const mapData = [{
+        country: formData.country,
+        color: "#EA382E",
+        coordinates: countries.find((c: Country) => c.text === formData.country)?.coordinates || []
+    }]
+
     const handleSubmit = async() => {}
-    const handleChange = async(key: keyof TripFormData, value: string | number) => {}
+    const handleChange = async(key: keyof TripFormData, value: string | number) => {
+        setFormData({ ...formData, [key]: value });
+    }
 
     return (
         <main className="flex flex-col gap-10 pb-20 wrapper">
@@ -110,6 +131,21 @@ const CreateTrip = ({loaderData}: Route.ComponentProps) => {
                             />
                         </div>
                     ))}
+
+                    <div>
+                        <label htmlFor="location">Location on the world map</label>
+                        <MapsComponent>
+                            <LayersDirective>
+                                <LayerDirective
+                                    shapeData={world_map}
+                                    dataSource={mapData}
+                                    shapePropertyPath="name"
+                                    shapeDataPath="country"
+                                    shapeSettings={{ colorValuePath : "color", fill : "#E5E5E5"}}
+                                />
+                            </LayersDirective>
+                        </MapsComponent>
+                    </div>
                 </form>
             </section>
         </main>
