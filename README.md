@@ -4,3 +4,8 @@
     - Menggunakan account ucokpakpahan
 # JALANKAN 
     - $env:NODE_OPTIONS="--import ./instrument.server.mjs"
+
+
+
+# GEMINI PACKAGE 
+    - npm i @google/generative-ai
