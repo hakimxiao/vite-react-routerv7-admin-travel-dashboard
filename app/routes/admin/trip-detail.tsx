@@ -2,7 +2,7 @@ import type {LoaderFunctionArgs} from "react-router";
 import type {Route} from "./+types/trip-detail";
 import {getTripById} from "~/appwrite/trips";
 import {parseTripData} from "~/lib/utils";
-import {Header} from "../../../components";
+import {Header, InfoPill} from "../../../components";
 
 
 // * clientLoader : Dengan menangkap dynamic param dari route
@@ -20,7 +20,20 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 const TripDetail = ({ loaderData }: Route.ComponentProps) => {
     const tripData = parseTripData(loaderData?.tripDetails);
 
-    const { name } = tripData || {};
+    const {
+        name,
+        duration,
+        itinerary,
+        travelStyle,
+        groupType,
+        budget,
+        interests,
+        estimatedPrice,
+        description,
+        bestTimeToVisit,
+        weatherInfo,
+        country
+    } = tripData || {};
 
     return (
         <main className="travel-detail wrapper ">
@@ -30,6 +43,15 @@ const TripDetail = ({ loaderData }: Route.ComponentProps) => {
                 <header>
                     <h1 className="p-40-semibold text-dark-100">{name}</h1>
                 </header>
+
+                <InfoPill
+                    text={`${duration} day plan`}
+                    image="/assets/icons/calendar.svg"
+                />
+                <InfoPill
+                    text={itinerary?.slice(0, 2).map((item) => item.location).join(", ") || ""}
+                    image="/assets/icons/location-mark.svg"
+                />
             </section>
         </main>
     )
