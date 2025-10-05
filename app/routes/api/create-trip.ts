@@ -29,7 +29,7 @@ export const action = async({ request }: ActionFunctionArgs ) => {
             {
                 "name": "Judul deskriptif untuk perjalanan",
                 "description": "Deskripsi singkat mengenai perjalanan dan hal-hal menariknya (maksimal 100 kata)",
-                "estimatedPrice": "Perkiraan harga rata-rata terendah dalam USD, misalnya $price",
+                "estimatedPrice": "Perkiraan harga rata-rata terendah dalam mata uang yang dipakai negara tersebut misal $, Rp, danlainnya",
                 "duration": ${numberOfDays},
                 "budget": "${budget}",
                 "travelStyle": "${travelStyle}",
