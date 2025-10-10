@@ -199,7 +199,7 @@ const Dashboard = ({ loaderData }: Route.ComponentProps ) => {
                                 )}
                             />
 
-                            <ColumnDirective field={field} headerText={headerText} width="150" textAlign="left" />
+                            <ColumnDirective field={field} headerText={headerText} width="150" textAlign="Left" />
                         </ColumnsDirective>
                     </GridComponent>
                 </div>
